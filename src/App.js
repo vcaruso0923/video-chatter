@@ -11,10 +11,10 @@ function App() {
         VROOM
       </Navbar.Brand>
       <Navbar.Collapse className="justify-content-end">
-    <Navbar.Text>
-      <span className="hide">Signed in as:</span> <a href="#login">Login</a>
-    </Navbar.Text>
-  </Navbar.Collapse>
+        <Navbar.Text>
+          <span className="hide">Signed in as:</span> <a href="#login">Login</a>
+        </Navbar.Text>
+      </Navbar.Collapse>
     </Navbar>
     </div>
   );
