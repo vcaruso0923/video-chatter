@@ -12,15 +12,15 @@ const computers = require('../img/computers.png');
 function Homepage() {
 
     return (
-        <>
+        <section className="homepage">
             <Container fluid className="greenBg">
                 <Row className="center home-first">
                     <Col>
                         <h1>Free Video Conferencing</h1>
+                        <br />
                         <img alt='laptops' className="img-fluid" src={String(laptops)} />
                         <br />
-                        <Button variant="primary">Start A Meeting</Button>{' '}
-                        <Button variant="primary">Join A Meeting</Button>{' '}
+                        <Button variant="primary">Get Started</Button>{' '}
                     </Col>
                 </Row>
             </Container>
@@ -50,7 +50,7 @@ function Homepage() {
                     </Row>
                 </Container>
             </Container>
-        </>
+        </section>
     );
 }
 

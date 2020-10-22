@@ -16,22 +16,20 @@ function App() {
       <Router>
         <Navbar sticky="top" bg="dark" variant="dark">
           <Link to="/">
-            <Navbar.Brand href="#home">
+            <Navbar.Brand>
               Vroom
             </Navbar.Brand>
           </Link>
-
-          <Link to="/dashboard">
+          <Navbar.Collapse className="justify-content-end">
+            <Link to="/dashboard">
+              <Navbar.Text>
+                <span>Dashboard</span>
+              </Navbar.Text>
+            </Link>
             <Navbar.Text>
-              Dashboard
+              <span className="login">Login</span>
             </Navbar.Text>
-          </Link>
-
-      <Navbar.Collapse className="justify-content-end">
-        <Navbar.Text>
-          <span className="hide">Signed in as:</span> <a href="#login">Login</a>
-        </Navbar.Text>
-      </Navbar.Collapse>
+          </Navbar.Collapse>
         </Navbar>
 
         {/* A <Switch> looks through its children <Route>s and
