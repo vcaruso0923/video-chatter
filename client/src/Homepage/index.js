@@ -12,13 +12,13 @@ const computers = require('../img/computers.png');
 function Homepage() {
 
     return (
-        <section className="homepage">
+        <section className="homepage animated fadeIn">
             <Container fluid className="greenBg">
                 <Row className="center home-first">
                     <Col>
                         <h1>Free Video Conferencing</h1>
                         <br />
-                        <img alt='laptops' className="img-fluid" src={String(laptops)} />
+                        <img alt='laptops' className="img-fluid animated  jello" src={String(laptops)} />
                         <br />
                         <Button variant="primary">Get Started</Button>{' '}
                     </Col>

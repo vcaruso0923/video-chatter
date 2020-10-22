@@ -57,7 +57,7 @@ function CreateRoom(props) {
 function Dashboard() {
     const [modalShow, setModalShow] = React.useState(false);
     return (    
-        <section className="dashboard">
+        <section className="dashboard animated fadeIn">
             <Container fluid>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
@@ -130,8 +130,6 @@ function Dashboard() {
                                 <Button variant="outline-primary" size="sm">
                                     Invite Friend
                                 </Button>
-
-                             
                                 </h2>
                                 <hr />
                                 <Table striped bordered hover size="sm">
