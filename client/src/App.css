@@ -2,10 +2,14 @@ body{
   font-family: 'Montserrat', sans-serif;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link,
 .bg-dark{
   background-color: #006570 !important;
+  color: #fff !important;
 }
-
+a{
+  color: #006570 !important;
+}
 .navbar-brand{
   color: #00D9F0 !important;
   font-size: 2em !important;
@@ -82,3 +86,30 @@ text-transform: uppercase;
   margin: 20px;
 }
 
+.h5,
+h2{
+  font-weight: 600;
+}
+
+.login{
+  margin-left: 20px;
+}
+
+.btn-outline-primary {
+  color:  #006570 !important;
+  border-color:  #006570 !important;
+}
+
+.btn-outline-primary:hover {
+    color: #fff !important;
+    border-color:  #006570 !important;
+    background-color: #006570 !important;
+}
+
+select.form-control[multiple], select.form-control[size]{
+  min-height: 100px !important;
+}
+
+label{
+  font-weight: 600;
+}
