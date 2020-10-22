@@ -80,7 +80,9 @@ text-transform: uppercase;
 .row{
   padding: 20px 0;  
 }
-
+.row.noPad{
+  padding: 0;
+}
 .homepage .row{
   padding: 40px 0;
 }
@@ -115,4 +117,15 @@ select.form-control[multiple], select.form-control[size]{
 
 label{
   font-weight: 600;
+}
+
+.room .video{
+  max-width: 100px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.room .card-body{
+  text-align: center;
 }
