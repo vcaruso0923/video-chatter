@@ -9,6 +9,8 @@ import './App.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Homepage from './Homepage';
 import Dashboard from './Dashboard';
+import Room from './Room';
+
 
 function App() {
   return (
@@ -37,6 +39,9 @@ function App() {
         <Switch>
           <Route path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route path="/room">
+            <Room />
           </Route>
           <Route path="/">
             <Homepage />
