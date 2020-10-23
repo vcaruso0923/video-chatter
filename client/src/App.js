@@ -7,12 +7,47 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Navbar from 'react-bootstrap/Navbar';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Homepage from './Homepage';
 import Dashboard from './Dashboard';
 import Room from './Room';
 
+function Login(props) {
+  return (
+      <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      >
+      <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Login
+          </Modal.Title>
+          </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Login
+          </Button>
+        </Form>
+      </Modal.Body>
+      </Modal>
+  );
+}
 
 function App() {
+  const [modalShow3, setModalShow3] = React.useState(false);
   return (
     <div className="App">
       <Router>
@@ -29,8 +64,12 @@ function App() {
               </Navbar.Text>
             </Link>
             <Navbar.Text>
-              <span className="login">Login</span>
+              <span className="login" onClick={() => setModalShow3(true)}>Login</span>
             </Navbar.Text>
+            <Login
+                show={modalShow3}
+                onHide={() => setModalShow3(false)}
+            />
           </Navbar.Collapse>
         </Navbar>
 
