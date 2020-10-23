@@ -9,32 +9,44 @@ import './App.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Homepage from './Homepage';
 import Dashboard from './Dashboard';
+import Login from './Login';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Navbar sticky="top" bg="dark" variant="dark">
+
           <Link to="/">
             <Navbar.Brand>
               Vroom
             </Navbar.Brand>
           </Link>
+
           <Navbar.Collapse className="justify-content-end">
+            
             <Link to="/dashboard">
               <Navbar.Text>
                 <span>Dashboard</span>
               </Navbar.Text>
             </Link>
-            <Navbar.Text>
-              <span className="login">Login</span>
-            </Navbar.Text>
+
+            <Link to="/login">
+              <Navbar.Text>
+                <span className="login">Login</span>
+              </Navbar.Text>
+            </Link>
+
           </Navbar.Collapse>
+
         </Navbar>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
           <Route path="/dashboard">
             <Dashboard />
           </Route>

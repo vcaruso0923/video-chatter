@@ -116,3 +116,10 @@ select.form-control[multiple], select.form-control[size]{
 label{
   font-weight: 600;
 }
+
+/* Added this for login form - Os */
+.login-form {
+  display:block;
+  width:50%;
+  margin: 0 auto;
+}
