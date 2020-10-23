@@ -35,12 +35,12 @@ function CreateRoom(props) {
             <Form.Group controlId="exampleForm.ControlSelect2">
                 <Form.Label>Select The Room's Participants</Form.Label>
                 <Form.Control as="select" multiple>
-                <option>bancboy@hotmail.com</option>
-                <option>isotopian@yahoo.com</option>
-                <option>godeke@hotmail.com</option>
-                <option>ingolfke@live.com</option>
-                <option>dieman@optonline.net</option>
-                <option>dsowsy@outlook.com</option>
+                    <option>bancboy@hotmail.com</option>
+                    <option>isotopian@yahoo.com</option>
+                    <option>godeke@hotmail.com</option>
+                    <option>ingolfke@live.com</option>
+                    <option>dieman@optonline.net</option>
+                    <option>dsowsy@outlook.com</option>
                 </Form.Control>
                 <span className="text-muted">Hold down the Ctrl (windows) or Command (Mac) button to select multiple friends.</span>
             </Form.Group>
@@ -54,10 +54,41 @@ function CreateRoom(props) {
     );
 }
 
+function Invite(props) {
+    return (
+        <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            Send An Invite
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Form>
+            <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Label>Enter Email Address</Form.Label>
+                <Form.Control type="email" placeholder="Enter Invitee's Email" />
+            </Form.Group>
+            </Form>
+        </Modal.Body>
+        <Modal.Footer>
+            <Button onClick={props.onHide}>Cancel</Button>
+            <Button>Invite</Button>
+        </Modal.Footer>
+        </Modal>
+    );
+}
+
 function Dashboard() {
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow1, setModalShowCreateRoom] = React.useState(false);
+    const [modalShow2, setModalShowInvite] = React.useState(false);
     return (    
         <section className="dashboard animated fadeIn">
+            
             <Container fluid>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
@@ -79,14 +110,15 @@ function Dashboard() {
                             <Col>
                                 <h2>Active Rooms&nbsp;
                                 <>
-                                <Button variant="outline-primary" size="sm" onClick={() => setModalShow(true)}>
+                                <Button variant="outline-primary" size="sm" onClick={() => setModalShowCreateRoom(true)}>
                                     Create Room
                                 </Button>
 
                                 <CreateRoom
-                                    show={modalShow}
-                                    onHide={() => setModalShow(false)}
+                                    show={modalShow1}
+                                    onHide={() => setModalShowCreateRoom(false)}
                                 />
+                                
                                 </> 
                                 </h2>
                                 <hr />
@@ -125,11 +157,16 @@ function Dashboard() {
                     <Container>
                         <Row>
                             <Col>
-                            <h2>My Friends&nbsp;
-                                 
-                                <Button variant="outline-primary" size="sm">
-                                    Invite Friend
+                                <h2>My Friends&nbsp;
+                                    
+                                <Button variant="outline-primary" size="sm" onClick={() => setModalShowInvite(true)}>
+                                        Invite A Friend
                                 </Button>
+
+                                <Invite
+                                    show={modalShow2}
+                                    onHide={() => setModalShowInvite(false)}
+                                />
                                 </h2>
                                 <hr />
                                 <Table striped bordered hover size="sm">
