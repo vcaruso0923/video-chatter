@@ -7,13 +7,14 @@ const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
 const PORT = process.env.PORT || 3001;
 const app = express();
+const http = require('http').Server(app)
 const socket = require("socket.io");
 const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: authMiddleware
 });
-const io = socket(server);
+const io = socket(http);
 
 server.applyMiddleware({ app });
 
@@ -51,7 +52,7 @@ io.on('connection', socket => {
         const usersInThisRoom = users[roomID].filter(id => id !== socket.id);
         socket.emit("all users", usersInThisRoom);
     });
-    
+
     socket.on("sending signal", payload => {
         io.to(payload.userToSignal).emit('user joined', { signal: payload.signal, callerID: payload.callerID });
     });
