@@ -76,8 +76,8 @@ function Invite(props) {
             </Form>
         </Modal.Body>
         <Modal.Footer>
-            <Button onClick={props.onHide}>Invite</Button>
-            <Button>Create</Button>
+            <Button onClick={props.onHide}>Cancel</Button>
+            <Button>Invite</Button>
         </Modal.Footer>
         </Modal>
     );
