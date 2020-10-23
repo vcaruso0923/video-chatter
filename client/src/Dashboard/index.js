@@ -27,6 +27,7 @@ function CreateRoom(props) {
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
         <Form>
             <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Room Title</Form.Label>
@@ -45,6 +46,7 @@ function CreateRoom(props) {
                 <span className="text-muted">Hold down the Ctrl (windows) or Command (Mac) button to select multiple friends.</span>
             </Form.Group>
             </Form>
+            
         </Modal.Body>
         <Modal.Footer>
             <Button onClick={props.onHide}>Cancel</Button>
