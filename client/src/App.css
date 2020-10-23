@@ -80,7 +80,9 @@ text-transform: uppercase;
 .row{
   padding: 20px 0;  
 }
-
+.row.noPad{
+  padding: 0;
+}
 .homepage .row{
   padding: 40px 0;
 }
@@ -89,6 +91,7 @@ text-transform: uppercase;
   margin: 20px;
 }
 
+.h4,
 .h5,
 h2{
   font-weight: 600;
@@ -123,3 +126,15 @@ label{
   width:60%;
   margin: 0 auto;
 }
+
+.room .video{
+  max-width: 100px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.room .card-body{
+  text-align: center;
+}
+

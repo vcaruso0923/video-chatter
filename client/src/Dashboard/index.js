@@ -114,7 +114,7 @@ function Dashboard() {
                                     ))}
                                     </>
                                     </Card.Text>
-                                    <Card.Link href="#">Enter Room</Card.Link>
+                                    <Card.Link href="room">Enter Room</Card.Link>
                                 </Card.Body>
                                 </Card>
                             </Col>

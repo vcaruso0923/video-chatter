@@ -10,6 +10,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Homepage from './Homepage';
 import Dashboard from './Dashboard';
 import Login from './Login';
+import Room from './Room';
 
 function App() {
   return (
@@ -49,6 +50,9 @@ function App() {
           </Route>
           <Route path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route path="/room">
+            <Room />
           </Route>
           <Route path="/">
             <Homepage />
