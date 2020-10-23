@@ -47,7 +47,7 @@ function Login(props) {
 }
 
 function App() {
-  const [modalShow3, setModalShow3] = React.useState(false);
+  const [modalShowLogin, setModalShowLogin] = React.useState(false);
   return (
     <div className="App">
       <Router>
@@ -64,11 +64,11 @@ function App() {
               </Navbar.Text>
             </Link>
             <Navbar.Text>
-              <span className="login" onClick={() => setModalShow3(true)}>Login</span>
+              <span className="login" onClick={() => setModalShowLogin(true)}>Login</span>
             </Navbar.Text>
             <Login
-                show={modalShow3}
-                onHide={() => setModalShow3(false)}
+                show={modalShowLogin}
+                onHide={() => setModalShowLogin(false)}
             />
           </Navbar.Collapse>
         </Navbar>

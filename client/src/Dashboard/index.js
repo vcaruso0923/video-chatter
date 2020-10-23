@@ -84,8 +84,8 @@ function Invite(props) {
 }
 
 function Dashboard() {
-    const [modalShow1, setModalShow1] = React.useState(false);
-    const [modalShow2, setModalShow2] = React.useState(false);
+    const [modalShow1, setModalShowCreateRoom] = React.useState(false);
+    const [modalShow2, setModalShowInvite] = React.useState(false);
     return (    
         <section className="dashboard animated fadeIn">
             
@@ -110,13 +110,13 @@ function Dashboard() {
                             <Col>
                                 <h2>Active Rooms&nbsp;
                                 <>
-                                <Button variant="outline-primary" size="sm" onClick={() => setModalShow1(true)}>
+                                <Button variant="outline-primary" size="sm" onClick={() => setModalShowCreateRoom(true)}>
                                     Create Room
                                 </Button>
 
                                 <CreateRoom
                                     show={modalShow1}
-                                    onHide={() => setModalShow1(false)}
+                                    onHide={() => setModalShowCreateRoom(false)}
                                 />
                                 
                                 </> 
@@ -159,13 +159,13 @@ function Dashboard() {
                             <Col>
                                 <h2>My Friends&nbsp;
                                     
-                                <Button variant="outline-primary" size="sm" onClick={() => setModalShow2(true)}>
+                                <Button variant="outline-primary" size="sm" onClick={() => setModalShowInvite(true)}>
                                         Invite A Friend
                                 </Button>
 
                                 <Invite
                                     show={modalShow2}
-                                    onHide={() => setModalShow2(false)}
+                                    onHide={() => setModalShowInvite(false)}
                                 />
                                 </h2>
                                 <hr />
