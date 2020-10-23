@@ -99,6 +99,7 @@ h2{
 
 .login{
   margin-left: 20px;
+  cursor: pointer;
 }
 
 .btn-outline-primary {
