@@ -5,11 +5,13 @@ const roomsSchema = new Schema(
     {
         roomid: {
             type: String,
-            required: true
+            required: true,
+            unique: true,
         },
         roomName: {
             type: String,
-            required: true
+            required: true,
+            unique: true,
         },
         createdAt: {
             type: Date,

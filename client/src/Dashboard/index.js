@@ -27,7 +27,6 @@ function CreateRoom(props) {
 
     const handleFormSubmit = async event => {
         event.preventDefault();
-        console.log(roomName)
         const roomid = uuid();
 
         try {
