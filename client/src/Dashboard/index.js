@@ -108,7 +108,7 @@ function Dashboard() {
                     <Container>
                         <Row>
                             <Col>
-                                <h2>Active Rooms&nbsp;
+                                <h2>My Rooms&nbsp;
                                 <>
                                 <Button variant="outline-primary" size="sm" onClick={() => setModalShowCreateRoom(true)}>
                                     Create Room
@@ -152,6 +152,43 @@ function Dashboard() {
                             </Col>
                         </Row>
                     </Container>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <h2>My Friends Rooms&nbsp;
+
+                                </h2>
+                                <hr />
+                                <Card style={{ width: '14em' }}>
+                                <Card.Body>
+                                    <Card.Title>Room Title</Card.Title>
+                                    <Card.Subtitle className="mb-2 text-muted">6 Participants</Card.Subtitle>
+                                    <Card.Text>
+                                    augusto@yahoo.ca<br />
+                                    bwcarty@att.net<br />
+                                    dprice@msn.com<br />
+                                    <>
+                                    {['top'].map((placement) => (
+                                        <OverlayTrigger
+                                        key={placement}
+                                        placement={placement}
+                                        overlay={
+                                            <Tooltip id={`tooltip-${placement}`}>
+                                            lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
+                                            </Tooltip>
+                                        }
+                                        >
+                                        <a><strong>3 More</strong></a>
+                                        </OverlayTrigger>
+                                    ))}
+                                    </>
+                                    </Card.Text>
+                                    <Card.Link href="room">Enter Room</Card.Link>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                        </Row>
+                    </Container>
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
                     <Container>
@@ -162,7 +199,6 @@ function Dashboard() {
                                 <Button variant="outline-primary" size="sm" onClick={() => setModalShowInvite(true)}>
                                         Invite A Friend
                                 </Button>
-
                                 <Invite
                                     show={modalShow2}
                                     onHide={() => setModalShowInvite(false)}
