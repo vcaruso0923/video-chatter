@@ -9,7 +9,7 @@ const typeDefs = gql`
         roomName: String
         roomid: String
         createdAt: String
-        userEmail: String
+        email: String
     }
 
     type User {

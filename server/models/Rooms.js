@@ -16,7 +16,7 @@ const roomsSchema = new Schema(
             default: Date.now,
             get: timestamp => moment(timestamp).format('MMM Do, YYYY [at] hh:mm a')
         },
-        userEmail: {
+        email: {
             type: String,
             required: true
         },

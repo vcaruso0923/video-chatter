@@ -21,3 +21,15 @@ export const ADD_USER = gql`
         }
     }
 `;
+
+export const CREATE_ROOM = gql`
+    mutation createRoom($roomName: String!, $roomid: String!) {
+        createRoom(roomName: $roomName, roomid: $roomid) {
+            _id
+            roomName
+            roomid
+            createdAt
+            email
+        }
+    }
+`;

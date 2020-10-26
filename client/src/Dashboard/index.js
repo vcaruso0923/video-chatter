@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,9 +11,39 @@ import Nav from 'react-bootstrap/Nav';
 import Table from 'react-bootstrap/Table';
 import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import { useMutation } from '@apollo/react-hooks';
+import {CREATE_ROOM} from '../utils/mutations'
+import { v1 as uuid } from "uuid";
 
 function CreateRoom(props) {
+    const [roomName, setRoomName] = useState('');
+
+    const handleChange = event => {
+        if (event.target.value.length <= 280) {
+            setRoomName(event.target.value);
+        }
+    };
+
+    const handleFormSubmit = async event => {
+        event.preventDefault();
+        console.log("submitted!")
+        const roomid = uuid();
+
+        try {
+            // add thought to database
+            await createRoom({
+                variables: { roomName, roomid }
+            });
+
+            // clear form value
+            setRoomName('');
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const [createRoom] = useMutation(CREATE_ROOM);
     return (
         <Modal
         {...props}
@@ -27,29 +57,17 @@ function CreateRoom(props) {
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form>
+        <Form onSubmit={handleFormSubmit} value={roomName}>
             <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Room Title</Form.Label>
-                <Form.Control type="text" placeholder="Enter A Room Title" />
+                <Form.Control onChange={handleChange} type="text" placeholder="Enter A Room Title" />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect2">
-                <Form.Label>Select The Room's Participants</Form.Label>
-                <Form.Control as="select" multiple>
-                    <option>bancboy@hotmail.com</option>
-                    <option>isotopian@yahoo.com</option>
-                    <option>godeke@hotmail.com</option>
-                    <option>ingolfke@live.com</option>
-                    <option>dieman@optonline.net</option>
-                    <option>dsowsy@outlook.com</option>
-                </Form.Control>
-                <span className="text-muted">Hold down the Ctrl (windows) or Command (Mac) button to select multiple friends.</span>
             </Form.Group>
+            <Button onClick={props.onHide}>Cancel</Button>
+            <Button type="submit">Create</Button>
             </Form>
         </Modal.Body>
-        <Modal.Footer>
-            <Button onClick={props.onHide}>Cancel</Button>
-            <Button>Create</Button>
-        </Modal.Footer>
         </Modal>
     );
 }
