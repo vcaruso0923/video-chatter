@@ -6,6 +6,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type Rooms {
         _id: ID
+        roomName: String
         roomid: String
         createdAt: String
         userEmail: String

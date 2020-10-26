@@ -7,6 +7,10 @@ const roomsSchema = new Schema(
             type: String,
             required: true
         },
+        roomName: {
+            type: String,
+            required: true
+        },
         createdAt: {
             type: Date,
             default: Date.now,
