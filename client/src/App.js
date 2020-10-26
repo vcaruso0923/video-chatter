@@ -199,11 +199,6 @@ function App() {
             </Navbar.Brand>
               </Link>
               <Navbar.Collapse className="justify-content-end">
-                <Link to="/dashboard">
-                  <Navbar.Text>
-                    <span>Dashboard</span>
-                  </Navbar.Text>
-                </Link>
                 <Navbar.Text>
                   <span className="login" onClick={() => setModalShowLogin(true)}>Login</span>
                 </Navbar.Text>
