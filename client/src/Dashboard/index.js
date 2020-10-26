@@ -12,35 +12,34 @@ import Table from 'react-bootstrap/Table';
 import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import {CREATE_ROOM} from '../utils/mutations'
+import { QUERY_ME } from '../utils/queries'
 import { v1 as uuid } from "uuid";
 
 function CreateRoom(props) {
     const [roomName, setRoomName] = useState('');
-
     const handleChange = event => {
         if (event.target.value.length <= 280) {
             setRoomName(event.target.value);
         }
     };
-
     const handleFormSubmit = async event => {
         event.preventDefault();
         const roomid = uuid();
-
         try {
             // add thought to database
             await createRoom({
                 variables: { roomName, roomid }
             });
-
             // clear form value
             setRoomName('');
         } catch (e) {
             console.error(e);
         }
     };
+
+
 
     const [createRoom] = useMutation(CREATE_ROOM);
     return (
@@ -103,6 +102,13 @@ function Invite(props) {
 function Dashboard() {
     const [modalShow1, setModalShowCreateRoom] = React.useState(false);
     const [modalShow2, setModalShowInvite] = React.useState(false);
+
+    const { loading, data } = useQuery( QUERY_ME );
+
+    const user = data?.me || {};
+
+    console.log(user)
+
     return (    
         <section className="dashboard animated fadeIn">
             
