@@ -57,10 +57,10 @@ function CreateRoom(props) {
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form onSubmit={handleFormSubmit} value={roomName}>
+        <Form onSubmit={handleFormSubmit}>
             <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Room Title</Form.Label>
-                <Form.Control onChange={handleChange} type="text" placeholder="Enter A Room Title" />
+                <Form.Control onChange={handleChange} type="text" placeholder="Enter A Room Title" name="roomName"/>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect2">
             </Form.Group>
