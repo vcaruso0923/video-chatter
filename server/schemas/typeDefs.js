@@ -6,9 +6,10 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type Rooms {
         _id: ID
+        roomName: String
         roomid: String
         createdAt: String
-        userEmail: String
+        email: String
     }
 
     type User {
@@ -28,7 +29,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(email: String!, password: String!): Auth
         addFriend(friendId: ID!): User
-        createRoom(roomid: String!): Rooms
+        createRoom(roomid: String!, roomName: String!): Rooms
     }  
 
     type Auth {

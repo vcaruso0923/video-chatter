@@ -64,7 +64,19 @@ const resolvers = {
             }
 
             throw new AuthenticationError('You need to be logged in!');
-        }
+        },
+        createRoom: async (parent, args, context) => {
+            if (context.user) {
+                const rooms = await Rooms.create({ ...args, email: context.user.email });
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { rooms: rooms._id } },
+                    { new: true }
+                );
+                return rooms;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
     }
 };
 
