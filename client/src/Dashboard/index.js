@@ -12,35 +12,34 @@ import Table from 'react-bootstrap/Table';
 import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import {CREATE_ROOM} from '../utils/mutations'
+import { QUERY_ME } from '../utils/queries'
 import { v1 as uuid } from "uuid";
 
 function CreateRoom(props) {
     const [roomName, setRoomName] = useState('');
-
     const handleChange = event => {
         if (event.target.value.length <= 280) {
             setRoomName(event.target.value);
         }
     };
-
     const handleFormSubmit = async event => {
         event.preventDefault();
         const roomid = uuid();
-
         try {
             // add thought to database
             await createRoom({
                 variables: { roomName, roomid }
             });
-
             // clear form value
             setRoomName('');
         } catch (e) {
             console.error(e);
         }
     };
+
+
 
     const [createRoom] = useMutation(CREATE_ROOM);
     return (
@@ -103,6 +102,14 @@ function Invite(props) {
 function Dashboard() {
     const [modalShow1, setModalShowCreateRoom] = React.useState(false);
     const [modalShow2, setModalShowInvite] = React.useState(false);
+
+    const { loading, data } = useQuery( QUERY_ME );
+
+    const user = data?.me || {};
+    const userRoomsArray = user.rooms
+    console.log(user)
+    console.log(userRoomsArray)
+
     return (    
         <section className="dashboard animated fadeIn">
             
@@ -135,37 +142,41 @@ function Dashboard() {
                                     show={modalShow1}
                                     onHide={() => setModalShowCreateRoom(false)}
                                 />
-                                
                                 </> 
                                 </h2>
                                 <hr />
-                                <Card style={{ width: '14em' }}>
-                                <Card.Body>
-                                    <Card.Title>Room Title</Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">6 Participants</Card.Subtitle>
-                                    <Card.Text>
-                                    augusto@yahoo.ca<br />
-                                    bwcarty@att.net<br />
-                                    dprice@msn.com<br />
-                                    <>
-                                    {['top'].map((placement) => (
-                                        <OverlayTrigger
-                                        key={placement}
-                                        placement={placement}
-                                        overlay={
-                                            <Tooltip id={`tooltip-${placement}`}>
-                                            lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
-                                            </Tooltip>
-                                        }
-                                        >
-                                        <a><strong>3 More</strong></a>
-                                        </OverlayTrigger>
-                                    ))}
-                                    </>
-                                    </Card.Text>
-                                    <Card.Link href="room">Enter Room</Card.Link>
-                                </Card.Body>
-                                </Card>
+                                {userRoomsArray && userRoomsArray.map(room => (
+                                    <Card style={{ width: '14em' }}>
+                                        <Card.Body>
+                                            <Card.Title>{room.roomName}</Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">{user.friends.length.toString()} Invited</Card.Subtitle>
+                                            <Card.Text>
+                                    {/* need to filter and map first three friends */}
+                                            augusto@yahoo.ca<br />
+                                            bwcarty@att.net<br />
+                                            dprice@msn.com<br />
+                                            <>
+                                            {['top'].map((placement) => (
+                                                <OverlayTrigger
+                                                key={placement}
+                                                placement={placement}
+                                                overlay={
+                                                    <Tooltip id={`tooltip-${placement}`}>
+                                    {/* need to filter and map all friends but the first 3 */}
+                                                    lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
+                                                    </Tooltip>
+                                                }
+                                                >
+                                                <a><strong>3 More</strong></a>
+                                                </OverlayTrigger>
+                                            ))}
+                                            </>
+                                            </Card.Text>
+                                    {/* need to create link, will look like: something.com/{room.roomid} */}
+                                            <Card.Link href="room">Enter Room</Card.Link>
+                                        </Card.Body>
+                                    </Card>
+                                ))}
                             </Col>
                         </Row>
                     </Container>
@@ -173,7 +184,6 @@ function Dashboard() {
                         <Row>
                             <Col>
                                 <h2>My Friends Rooms&nbsp;
-
                                 </h2>
                                 <hr />
                                 <Card style={{ width: '14em' }}>
