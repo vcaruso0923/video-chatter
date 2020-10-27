@@ -132,6 +132,9 @@ function Dashboard() {
 
     const user = data?.me || {};
     const userRoomsArray = user.rooms
+    const friendsArray = user.friends
+    console.log(friendsArray)
+
     console.log(user)
     return (    
         <section className="dashboard animated fadeIn">
@@ -168,6 +171,7 @@ function Dashboard() {
                                 </> 
                                 </h2>
                                 <hr />
+                                {/* map users own rooms */}
                                 {userRoomsArray && userRoomsArray.map(room => (
                                     <Card style={{ width: '14em' }}>
                                         <Card.Body>
@@ -203,39 +207,48 @@ function Dashboard() {
                             </Col>
                         </Row>
                     </Container>
+
                     <Container>
                         <Row>
                             <Col>
-                                <h2>My Friends Rooms&nbsp;
+                                <h2>My Friend's Rooms&nbsp;
                                 </h2>
                                 <hr />
-                                <Card style={{ width: '14em' }}>
-                                <Card.Body>
-                                    <Card.Title>Room Title</Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">6 Participants</Card.Subtitle>
-                                    <Card.Text>
-                                    augusto@yahoo.ca<br />
-                                    bwcarty@att.net<br />
-                                    dprice@msn.com<br />
-                                    <>
-                                    {['top'].map((placement) => (
-                                        <OverlayTrigger
-                                        key={placement}
-                                        placement={placement}
-                                        overlay={
-                                            <Tooltip id={`tooltip-${placement}`}>
-                                            lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
-                                            </Tooltip>
-                                        }
-                                        >
-                                        <a><strong>3 More</strong></a>
-                                        </OverlayTrigger>
-                                    ))}
-                                    </>
-                                    </Card.Text>
-                                    <Card.Link href="room">Enter Room</Card.Link>
-                                </Card.Body>
-                                </Card>
+                                {/* map user's friend's then map over each friend's rooms array rooms */}
+                                {friendsArray && friendsArray.map(user => (
+                                    user.rooms.map(rooms => (
+                                        <Card style={{ width: '14em' }}>
+                                            <Card.Body>
+                                                <Card.Title>{rooms.roomName}?</Card.Title>
+                                                <Card.Subtitle className="mb-2 text-muted">1 Invited</Card.Subtitle>
+                                                <Card.Text>
+                                        {/* need to filter and map first three friends */}
+                                                augusto@yahoo.ca<br />
+                                                bwcarty@att.net<br />
+                                                dprice@msn.com<br />
+                                                <>
+                                                {['top'].map((placement) => (
+                                                    <OverlayTrigger
+                                                    key={placement}
+                                                    placement={placement}
+                                                    overlay={
+                                                        <Tooltip id={`tooltip-${placement}`}>
+                                        {/* need to filter and map all friends but the first 3 */}
+                                                        lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
+                                                        </Tooltip>
+                                                    }
+                                                    >
+                                                    <a><strong>3 More</strong></a>
+                                                    </OverlayTrigger>
+                                                ))}
+                                                </>
+                                                </Card.Text>
+                                        {/* need to create link, will look like: something.com/{room.roomid} */}
+                                                <Card.Link href="room">Enter Room</Card.Link>
+                                            </Card.Body>
+                                        </Card>
+                                    ))
+                                ))}
                             </Col>
                         </Row>
                     </Container>
