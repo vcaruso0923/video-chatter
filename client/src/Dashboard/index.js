@@ -15,7 +15,7 @@ import Form from 'react-bootstrap/Form';
 
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import {CREATE_ROOM, ADD_FRIEND} from '../utils/mutations'
-import { QUERY_ME, QUERY_USER } from '../utils/queries'
+import { QUERY_ME, QUERY_USERS } from '../utils/queries'
 import { v1 as uuid } from "uuid";
 
 function CreateRoom(props) {
@@ -80,17 +80,16 @@ function Invite(props) {
         }
     };
 
-    // query user by email: 
-    // const { loading, data } = useQuery(QUERY_USER, {
-    //     variables: { email: friendEmail }
-    // });
+    const { data } = useQuery(QUERY_USERS);
     
-    // const friendid = data?._id;
-
     const handleClick = async () => {
+        var locatedFriend = data.users.filter(function(e) {
+            return e.email === friendEmail
+        });
+        var friendid = locatedFriend[0]._id;
         try {
         await addFriend({
-            // variables: { id: friendid }
+            variables: { id: friendid }
         });
         } catch (e) {
         console.error(e);
@@ -133,7 +132,7 @@ function Dashboard() {
 
     const user = data?.me || {};
     const userRoomsArray = user.rooms
-
+    console.log(user)
     return (    
         <section className="dashboard animated fadeIn">
             

@@ -34,3 +34,12 @@ export const QUERY_USER = gql`
         }
     }
 `;
+
+export const QUERY_USERS = gql`
+    query users {
+        users {
+            _id
+            email
+        }
+    }
+`;
