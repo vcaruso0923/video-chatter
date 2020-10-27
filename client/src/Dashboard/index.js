@@ -129,11 +129,12 @@ function Dashboard() {
     const [modalShow2, setModalShowInvite] = React.useState(false);
 
     const { loading, data } = useQuery( QUERY_ME );
+    if (loading) return 'Loading...'
 
     const user = data?.me || {};
     const userRoomsArray = user.rooms
     const friendsArray = user.friends
-    console.log(friendsArray)
+    // console.log(friendsArray)
 
     console.log(user)
     return (    
