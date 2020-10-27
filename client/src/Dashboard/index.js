@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import { Typeahead } from 'react-bootstrap-typeahead'; // ES2015
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
 import Table from 'react-bootstrap/Table';
@@ -81,7 +82,13 @@ function Invite(props) {
     };
 
     const { data } = useQuery(QUERY_USERS);
-    
+    console.log(data)
+    const typeaheadArray = []
+    // data.map(friend => (
+    //     typeaheadArray.push(friend.email)
+    // ))
+    // console.log(typeaheadArray)
+
     const handleClick = async () => {
         var locatedFriend = data.users.filter(function(e) {
             return e.email === friendEmail
