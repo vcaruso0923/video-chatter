@@ -276,26 +276,14 @@ function Dashboard() {
                                 <thead>
                                     <tr>
                                     <th>Username</th>
-                                    <th>Online</th>
-                                    <th>In Room</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {friendsArray && friendsArray.map(friend => (
                                     <tr>
-                                    <td>augusto@yahoo.ca</td>
-                                    <td><Badge variant="success">Yes</Badge>{' '}</td>
-                                    <td><a href="#">Room Title</a></td>
+                                    <td>{friend.email}</td>
                                     </tr>
-                                    <tr>
-                                    <td>bwcarty@att.net</td>
-                                    <td><Badge variant="success">Yes</Badge>{' '}</td>
-                                    <td><a href="#">Room Title</a></td>
-                                    </tr>
-                                    <tr>
-                                    <td>charty@aol.net</td>
-                                    <td><Badge variant="danger">No</Badge>{' '}</td>
-                                    <td><span class="text-muted">N/A</span></td>
-                                    </tr>
+                                ))}
                                 </tbody>
                                 </Table>
                             
