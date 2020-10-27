@@ -217,9 +217,9 @@ function Dashboard() {
                                 {/* map user's friend's then map over each friend's rooms array rooms */}
                                 {friendsArray && friendsArray.map(user => (
                                     user.rooms.map(rooms => (
-                                        <Card style={{ width: '14em' }}>
+                                        <Card key={rooms._id} style={{ width: '14em' }}>
                                             <Card.Body>
-                                                <Card.Title>{rooms.roomName}?</Card.Title>
+                                                <Card.Title>{rooms._id}?</Card.Title>
                                                 <Card.Subtitle className="mb-2 text-muted">1 Invited</Card.Subtitle>
                                                 <Card.Text>
                                         {/* need to filter and map first three friends */}
