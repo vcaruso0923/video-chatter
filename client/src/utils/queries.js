@@ -15,6 +15,10 @@ export const QUERY_ME = gql`
         friends {
             _id
             email
+            friends {
+                _id
+                email
+            }
             rooms {
                 _id
                 roomid

@@ -178,8 +178,10 @@ function Dashboard() {
                                         <Card.Body>
                                             <Card.Title>{room.roomName}</Card.Title>
                                             <Card.Subtitle className="mb-2 text-muted">{user.friends.length.toString()} Invited</Card.Subtitle>
+                                    
+                                    {/* able to see other participants:
                                             <Card.Text>
-                                    {/* need to filter and map first three friends */}
+                                    need to filter and map first three friends
                                             augusto@yahoo.ca<br />
                                             bwcarty@att.net<br />
                                             dprice@msn.com<br />
@@ -190,7 +192,7 @@ function Dashboard() {
                                                 placement={placement}
                                                 overlay={
                                                     <Tooltip id={`tooltip-${placement}`}>
-                                    {/* need to filter and map all friends but the first 3 */}
+                                    need to filter and map all friends but the first 3
                                                     lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
                                                     </Tooltip>
                                                 }
@@ -199,8 +201,9 @@ function Dashboard() {
                                                 </OverlayTrigger>
                                             ))}
                                             </>
-                                            </Card.Text>
-                                    {/* need to create link, will look like: something.com/{room.roomid} */}
+                                            </Card.Text> */}
+
+                                    {/* need to create link, will look like (below): something.com/{room.roomid}*/}
                                             <Card.Link href="room">Enter Room</Card.Link>
                                         </Card.Body>
                                     </Card>
@@ -220,7 +223,7 @@ function Dashboard() {
                                     user.rooms.map(rooms => (
                                         <Card key={rooms._id} style={{ width: '14em' }}>
                                             <Card.Body>
-                                                <Card.Title>{rooms._id}?</Card.Title>
+                                                <Card.Title>{rooms.roomName}</Card.Title>
                                                 <Card.Subtitle className="mb-2 text-muted">1 Invited</Card.Subtitle>
                                                 <Card.Text>
                                         {/* need to filter and map first three friends */}
