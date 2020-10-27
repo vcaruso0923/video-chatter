@@ -33,3 +33,16 @@ export const CREATE_ROOM = gql`
         }
     }
 `;
+
+export const ADD_FRIEND = gql`
+    mutation addFriend($id: ID!) {
+        addFriend(friendId: $id) {
+        _id
+        email
+        friends {
+            _id
+            email
+            }
+        }
+    }
+`;

@@ -26,3 +26,20 @@ export const QUERY_ME = gql`
         }
     }
 `;
+
+export const QUERY_USER = gql`
+    query user($email: String!) {
+        user(email: $email) {
+        _id
+        }
+    }
+`;
+
+export const QUERY_USERS = gql`
+    query users {
+        users {
+            _id
+            email
+        }
+    }
+`;

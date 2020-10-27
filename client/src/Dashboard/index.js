@@ -12,9 +12,10 @@ import Table from 'react-bootstrap/Table';
 import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import {CREATE_ROOM} from '../utils/mutations'
-import { QUERY_ME } from '../utils/queries'
+import {CREATE_ROOM, ADD_FRIEND} from '../utils/mutations'
+import { QUERY_ME, QUERY_USERS } from '../utils/queries'
 import { v1 as uuid } from "uuid";
 
 function CreateRoom(props) {
@@ -39,9 +40,8 @@ function CreateRoom(props) {
         }
     };
 
-
-
     const [createRoom] = useMutation(CREATE_ROOM);
+
     return (
         <Modal
         {...props}
@@ -71,6 +71,31 @@ function CreateRoom(props) {
 }
 
 function Invite(props) {
+    const [addFriend] = useMutation(ADD_FRIEND);
+
+    const [friendEmail, setFriendEmail] = useState('');
+    const handleChange = event => {
+        if (event.target.value.length <= 280) {
+            setFriendEmail(event.target.value);
+        }
+    };
+
+    const { data } = useQuery(QUERY_USERS);
+    
+    const handleClick = async () => {
+        var locatedFriend = data.users.filter(function(e) {
+            return e.email === friendEmail
+        });
+        var friendid = locatedFriend[0]._id;
+        try {
+        await addFriend({
+            variables: { id: friendid }
+        });
+        } catch (e) {
+        console.error(e);
+        }
+    };
+
     return (
         <Modal
         {...props}
@@ -87,13 +112,13 @@ function Invite(props) {
         <Form>
             <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Enter Email Address</Form.Label>
-                <Form.Control type="email" placeholder="Enter Invitee's Email" />
+                <Form.Control onChange={handleChange} name="friendEmail" type="email" placeholder="Enter Invitee's Email" />
             </Form.Group>
             </Form>
         </Modal.Body>
         <Modal.Footer>
             <Button onClick={props.onHide}>Cancel</Button>
-            <Button>Invite</Button>
+            <Button onClick={handleClick}>Add Friend</Button>
         </Modal.Footer>
         </Modal>
     );
@@ -108,8 +133,6 @@ function Dashboard() {
     const user = data?.me || {};
     const userRoomsArray = user.rooms
     console.log(user)
-    console.log(userRoomsArray)
-
     return (    
         <section className="dashboard animated fadeIn">
             
