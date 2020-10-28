@@ -74,17 +74,18 @@ function CreateRoom(props) {
 }
 
 function Invite(props) {
-    const [addFriend] = useMutation(ADD_FRIEND);
+    const [addFriend, {error}] = useMutation(ADD_FRIEND);
     const [singleSelections, setSingleSelections] = useState([]);
     const [friendEmail, setFriendEmail] = useState('');
+    const [invalidEmail, setInvalidEmail] = useState('');
     const handleChange = event => {
         if (event.target.value.length <= 280) {
             setFriendEmail(event.target.value);
-            console.log(friendEmail)
         }
     };
 
     const { loading, data } = useQuery(QUERY_USERS);
+    //the following code is to create a typeAhead array. Does not work currently.
     // if (loading) return ('Loading...')
     // const typeaheadArray = []
     // data.users.map(friend => (
@@ -93,16 +94,15 @@ function Invite(props) {
     // console.log(typeaheadArray)
 
     const handleClick = async () => {
-        var locatedFriend = data.users.filter(function(e) {
-            return e.email === friendEmail
+        var locatedFriend = data.users.filter(function(user) {
+            return user.email === friendEmail
         });
-        var friendid = locatedFriend[0]._id;
         try {
         await addFriend({
-            variables: { id: friendid }
+            variables: { id: locatedFriend[0]._id }
         });
-        } catch (e) {
-        console.error(e);
+        } catch (error) {
+            setInvalidEmail('Invalid Email!')
         }
     };
 
@@ -133,6 +133,11 @@ function Invite(props) {
                     selected={singleSelections} 
                 /> */}
             </Form.Group>
+            {
+                <div>
+                    <p style={{color: "red"}} className="error-text" >{invalidEmail}</p>
+                </div>
+            }
             <Button onClick={handleClick}>Add Friend</Button>
             <Button onClick={props.onHide} className="cancel">Cancel</Button>
             </Form>
