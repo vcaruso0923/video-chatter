@@ -73,18 +73,19 @@ function CreateRoom(props) {
 
 function Invite(props) {
     const [addFriend] = useMutation(ADD_FRIEND);
-
+    const [singleSelections, setSingleSelections] = useState([]);
     const [friendEmail, setFriendEmail] = useState('');
     const handleChange = event => {
         if (event.target.value.length <= 280) {
             setFriendEmail(event.target.value);
+            console.log(friendEmail)
         }
     };
 
-    const { data } = useQuery(QUERY_USERS);
-    console.log(data)
-    const typeaheadArray = []
-    // data.map(friend => (
+    const { loading, data } = useQuery(QUERY_USERS);
+    // if (loading) return ('Loading...')
+    // const typeaheadArray = []
+    // data.users.map(friend => (
     //     typeaheadArray.push(friend.email)
     // ))
     // console.log(typeaheadArray)
@@ -120,6 +121,15 @@ function Invite(props) {
             <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Enter Email Address</Form.Label>
                 <Form.Control onChange={handleChange} name="friendEmail" type="email" placeholder="Enter Invitee's Email" />
+                {/* <Typeahead 
+                    id="friend selector"
+                    onChange={handleChange, setSingleSelections} 
+                    name="friendEmail" 
+                    type="email" 
+                    options={typeaheadArray}
+                    placeholder="Enter Invitee's Email" 
+                    selected={singleSelections} 
+                /> */}
             </Form.Group>
             </Form>
         </Modal.Body>
@@ -143,7 +153,7 @@ function Dashboard() {
     const friendsArray = user.friends
     // console.log(friendsArray)
 
-    console.log(user)
+    // console.log(user)
     return (    
         <section className="dashboard animated fadeIn">
             
