@@ -19,6 +19,8 @@ import {CREATE_ROOM, ADD_FRIEND} from '../utils/mutations'
 import { QUERY_ME, QUERY_USERS } from '../utils/queries'
 import { v1 as uuid } from "uuid";
 
+const cam = require('../img/cam.png');
+
 function CreateRoom(props) {
     const [roomName, setRoomName] = useState('');
     const handleChange = event => {
@@ -63,8 +65,8 @@ function CreateRoom(props) {
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect2">
             </Form.Group>
-            <Button onClick={props.onHide}>Cancel</Button>
-            <Button type="submit">Create</Button>
+            <Button onClick={props.onHide} type="submit">Create</Button>
+            <Button onClick={props.onHide} className="cancel">Cancel</Button>
             </Form>
         </Modal.Body>
         </Modal>
@@ -131,12 +133,10 @@ function Invite(props) {
                     selected={singleSelections} 
                 /> */}
             </Form.Group>
-            </Form>
-        </Modal.Body>
-        <Modal.Footer>
-            <Button onClick={props.onHide}>Cancel</Button>
             <Button onClick={handleClick}>Add Friend</Button>
-        </Modal.Footer>
+            <Button onClick={props.onHide} className="cancel">Cancel</Button>
+            </Form>
+            </Modal.Body>
         </Modal>
     );
 }
@@ -191,9 +191,9 @@ function Dashboard() {
                                 <hr />
                                 {/* map users own rooms */}
                                 {userRoomsArray && userRoomsArray.map(room => (
-                                    <Card key={room.roomid} style={{ width: '14em' }}>
+                                    <Card key={room.roomid} style={{ width: 'auto' }}>
                                         <Card.Body>
-                                            <Card.Title>{room.roomName}</Card.Title>
+                                            <Card.Title>{room.roomName} <img alt='video camera' className="img-fluid" src={String(cam)} /></Card.Title>
                                             <Card.Subtitle className="mb-2 text-muted">{user.friends.length.toString()} Invited</Card.Subtitle>
                                     
                                     {/* able to see other participants:

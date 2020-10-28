@@ -7,6 +7,7 @@ body{
   background-color: #006570 !important;
   color: #fff !important;
 }
+
 a{
   color: #006570 !important;
 }
@@ -131,3 +132,42 @@ label{
 .room .card-body{
   text-align: center;
 }
+
+.card{
+  float: left;
+  margin: 0 5px 10px 5px;
+  box-shadow: 1px 1px 5px #ccc;
+}
+
+.card-title{
+  color: #009EA9;
+}
+
+.modal-body button{
+  float: right;
+  margin: 0 5px;
+}
+
+button.cancel{
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#666666+0,999999+100 */
+  background: #666666; /* Old browsers */
+  background: -moz-linear-gradient(top,  #666666 0%, #999999 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #666666 0%,#999999 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #666666 0%,#999999 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#999999',GradientType=0 ); /* IE6-9 */
+}
+
+.navbar-text{
+  padding: 0 10px;
+  cursor: pointer;
+  opacity: 9;
+}
+
+.navbar-text:hover{
+  color: #fff;
+}
+
+.tab-content img{
+  max-width: 20px;
+}
+
