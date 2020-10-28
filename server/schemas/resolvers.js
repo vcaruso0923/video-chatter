@@ -57,8 +57,9 @@ const resolvers = {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { friends: friendId } },
-                    { new: true }
-                ).populate('friends');
+                    { new: true })
+                .populate('friends')
+                .populate('rooms');
 
                 return updatedUser;
             }
@@ -71,8 +72,7 @@ const resolvers = {
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $push: { rooms: rooms._id } },
-                    { new: true }
-                );
+                    { new: true });
                 return rooms;
             }
             throw new AuthenticationError('You need to be logged in!');

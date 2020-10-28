@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import { Typeahead } from 'react-bootstrap-typeahead'; // ES2015
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
 import Table from 'react-bootstrap/Table';
@@ -72,16 +73,23 @@ function CreateRoom(props) {
 
 function Invite(props) {
     const [addFriend] = useMutation(ADD_FRIEND);
-
+    const [singleSelections, setSingleSelections] = useState([]);
     const [friendEmail, setFriendEmail] = useState('');
     const handleChange = event => {
         if (event.target.value.length <= 280) {
             setFriendEmail(event.target.value);
+            console.log(friendEmail)
         }
     };
 
-    const { data } = useQuery(QUERY_USERS);
-    
+    const { loading, data } = useQuery(QUERY_USERS);
+    // if (loading) return ('Loading...')
+    // const typeaheadArray = []
+    // data.users.map(friend => (
+    //     typeaheadArray.push(friend.email)
+    // ))
+    // console.log(typeaheadArray)
+
     const handleClick = async () => {
         var locatedFriend = data.users.filter(function(e) {
             return e.email === friendEmail
@@ -113,6 +121,15 @@ function Invite(props) {
             <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Enter Email Address</Form.Label>
                 <Form.Control onChange={handleChange} name="friendEmail" type="email" placeholder="Enter Invitee's Email" />
+                {/* <Typeahead 
+                    id="friend selector"
+                    onChange={handleChange, setSingleSelections} 
+                    name="friendEmail" 
+                    type="email" 
+                    options={typeaheadArray}
+                    placeholder="Enter Invitee's Email" 
+                    selected={singleSelections} 
+                /> */}
             </Form.Group>
             </Form>
         </Modal.Body>
@@ -129,9 +146,13 @@ function Dashboard() {
     const [modalShow2, setModalShowInvite] = React.useState(false);
 
     const { loading, data } = useQuery( QUERY_ME );
+    if (loading) return 'Loading...'
 
     const user = data?.me || {};
     const userRoomsArray = user.rooms
+    const friendsArray = user.friends
+    // console.log(friendsArray)
+
     console.log(user)
     return (    
         <section className="dashboard animated fadeIn">
@@ -168,13 +189,16 @@ function Dashboard() {
                                 </> 
                                 </h2>
                                 <hr />
+                                {/* map users own rooms */}
                                 {userRoomsArray && userRoomsArray.map(room => (
-                                    <Card style={{ width: '14em' }}>
+                                    <Card key={room.roomid} style={{ width: '14em' }}>
                                         <Card.Body>
                                             <Card.Title>{room.roomName}</Card.Title>
                                             <Card.Subtitle className="mb-2 text-muted">{user.friends.length.toString()} Invited</Card.Subtitle>
+                                    
+                                    {/* able to see other participants:
                                             <Card.Text>
-                                    {/* need to filter and map first three friends */}
+                                    need to filter and map first three friends
                                             augusto@yahoo.ca<br />
                                             bwcarty@att.net<br />
                                             dprice@msn.com<br />
@@ -185,7 +209,7 @@ function Dashboard() {
                                                 placement={placement}
                                                 overlay={
                                                     <Tooltip id={`tooltip-${placement}`}>
-                                    {/* need to filter and map all friends but the first 3 */}
+                                    need to filter and map all friends but the first 3
                                                     lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
                                                     </Tooltip>
                                                 }
@@ -194,8 +218,9 @@ function Dashboard() {
                                                 </OverlayTrigger>
                                             ))}
                                             </>
-                                            </Card.Text>
-                                    {/* need to create link, will look like: something.com/{room.roomid} */}
+                                            </Card.Text> */}
+
+                                    {/* need to create link, will look like (below): something.com/{room.roomid}*/}
                                             <Card.Link href="room">Enter Room</Card.Link>
                                         </Card.Body>
                                     </Card>
@@ -203,39 +228,50 @@ function Dashboard() {
                             </Col>
                         </Row>
                     </Container>
+
                     <Container>
                         <Row>
                             <Col>
-                                <h2>My Friends Rooms&nbsp;
+                                <h2>My Friend's Rooms&nbsp;
                                 </h2>
                                 <hr />
-                                <Card style={{ width: '14em' }}>
-                                <Card.Body>
-                                    <Card.Title>Room Title</Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">6 Participants</Card.Subtitle>
-                                    <Card.Text>
-                                    augusto@yahoo.ca<br />
-                                    bwcarty@att.net<br />
-                                    dprice@msn.com<br />
-                                    <>
-                                    {['top'].map((placement) => (
-                                        <OverlayTrigger
-                                        key={placement}
-                                        placement={placement}
-                                        overlay={
-                                            <Tooltip id={`tooltip-${placement}`}>
-                                            lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
-                                            </Tooltip>
-                                        }
-                                        >
-                                        <a><strong>3 More</strong></a>
-                                        </OverlayTrigger>
-                                    ))}
-                                    </>
-                                    </Card.Text>
-                                    <Card.Link href="room">Enter Room</Card.Link>
-                                </Card.Body>
-                                </Card>
+                                {/* map user's friend's then map over each friend's rooms array rooms */}
+                                {friendsArray && friendsArray.map(user => (
+                                    user.rooms.map(rooms => (
+                                        <Card key={rooms._id} style={{ width: '14em' }}>
+                                            <Card.Body>
+                                                <Card.Title>{rooms.roomName}</Card.Title>
+                                                <Card.Subtitle className="mb-2 text-muted">1 Invited</Card.Subtitle>
+                                                
+                                                {/* <Card.Text>
+                                        need to filter and map first three friends
+                                                augusto@yahoo.ca<br />
+                                                bwcarty@att.net<br />
+                                                dprice@msn.com<br />
+                                                <>
+                                                {['top'].map((placement) => (
+                                                    <OverlayTrigger
+                                                    key={placement}
+                                                    placement={placement}
+                                                    overlay={
+                                                        <Tooltip id={`tooltip-${placement}`}>
+                                        need to filter and map all friends but the first 3
+                                                        lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
+                                                        </Tooltip>
+                                                    }
+                                                    >
+                                                    <a><strong>3 More</strong></a>
+                                                    </OverlayTrigger>
+                                                ))}
+                                                </>
+                                                </Card.Text> */}
+
+                                        {/* need to create link, will look like: something.com/{room.roomid} */}
+                                                <Card.Link href="room">Enter Room</Card.Link>
+                                            </Card.Body>
+                                        </Card>
+                                    ))
+                                ))}
                             </Col>
                         </Row>
                     </Container>
@@ -259,26 +295,14 @@ function Dashboard() {
                                 <thead>
                                     <tr>
                                     <th>Username</th>
-                                    <th>Online</th>
-                                    <th>In Room</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    <td>augusto@yahoo.ca</td>
-                                    <td><Badge variant="success">Yes</Badge>{' '}</td>
-                                    <td><a href="#">Room Title</a></td>
+                                {friendsArray && friendsArray.map(friend => (
+                                    <tr key={friend._id}>
+                                    <td>{friend.email}</td>
                                     </tr>
-                                    <tr>
-                                    <td>bwcarty@att.net</td>
-                                    <td><Badge variant="success">Yes</Badge>{' '}</td>
-                                    <td><a href="#">Room Title</a></td>
-                                    </tr>
-                                    <tr>
-                                    <td>charty@aol.net</td>
-                                    <td><Badge variant="danger">No</Badge>{' '}</td>
-                                    <td><span class="text-muted">N/A</span></td>
-                                    </tr>
+                                ))}
                                 </tbody>
                                 </Table>
                             

@@ -10,6 +10,7 @@ const typeDefs = gql`
         roomid: String
         createdAt: String
         email: String
+        user: User
     }
 
     type User {
