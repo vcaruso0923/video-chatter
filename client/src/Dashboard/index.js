@@ -29,7 +29,7 @@ function CreateRoom(props) {
         }
     };
     const handleFormSubmit = async event => {
-        event.preventDefault();
+        // event.preventDefault();
         const roomid = uuid();
         try {
             // add thought to database
@@ -103,6 +103,7 @@ function Invite(props) {
             variables: { id: locatedFriend[0]._id }
         });
         setFriendAdded('Friend Added!')
+        setTimeout(function() {document.location.reload()}, 1000);
         } catch (error) {
             setInvalidEmail('Invalid Email!')
         }
