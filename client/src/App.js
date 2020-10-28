@@ -153,7 +153,7 @@ function App() {
       <ApolloProvider client={client}>
         <div className="App">
           <Router>
-            <Navbar sticky="top" bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark">
               <Link to="/">
                 <Navbar.Brand>
                   Vroom
