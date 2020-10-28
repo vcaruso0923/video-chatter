@@ -43,6 +43,13 @@ export const ADD_FRIEND = gql`
             _id
             email
             }
+            rooms {
+                _id
+                roomid
+                roomName
+                createdAt
+                email
+            }
         }
-    }
+    } 
 `;

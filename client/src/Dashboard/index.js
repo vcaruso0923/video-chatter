@@ -240,7 +240,7 @@ function Dashboard() {
                                     user.rooms.map(rooms => (
                                         <Card key={rooms._id} style={{ width: '14em' }}>
                                             <Card.Body>
-                                                <Card.Title>{rooms.roomName}</Card.Title>
+                                                <Card.Title>{user.email}'s Room</Card.Title>
                                                 <Card.Subtitle className="mb-2 text-muted">1 Invited</Card.Subtitle>
                                                 
                                                 {/* <Card.Text>
