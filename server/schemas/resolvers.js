@@ -9,7 +9,10 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
                     .populate('rooms')
-                    .populate('friends')
+                    .populate({
+                        path: 'friends',
+                        populate: { path: 'rooms' }
+                    })
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
@@ -25,7 +28,10 @@ const resolvers = {
         user: async (parent, { email }) => {
             return User.findOne({ email })
                 .select('-__v -password')
-                .populate('friends')
+                .populate({
+                    path: 'friends',
+                    populate: { path: 'rooms' }
+                })
                 .populate('rooms');
         },
     },
@@ -58,8 +64,8 @@ const resolvers = {
                     { _id: context.user._id },
                     { $addToSet: { friends: friendId } },
                     { new: true })
-                .populate('friends')
-                .populate('rooms');
+                    .populate('friends')
+                    .populate('rooms');
 
                 return updatedUser;
             }
