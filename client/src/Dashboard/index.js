@@ -220,8 +220,8 @@ function Dashboard() {
                                             </>
                                             </Card.Text> */}
 
-                                    {/* need to create link, will look like (below): something.com/{room.roomid}*/}
-                                            <Card.Link href="room">Enter Room</Card.Link>
+                                        {/* replace below link with deployed URL */}
+                                            <Card.Link href={"http://localhost:3000/room/" + room.roomid}>Enter Room</Card.Link>
                                         </Card.Body>
                                     </Card>
                                 ))}
@@ -241,7 +241,7 @@ function Dashboard() {
                                         <Card key={rooms._id} style={{ width: '14em' }}>
                                             <Card.Body>
                                                 <Card.Title>{rooms.roomName}</Card.Title>
-                                                <Card.Subtitle className="mb-2 text-muted">1 Invited</Card.Subtitle>
+                                                <Card.Subtitle className="mb-2 text-muted">{user.friends.length.toString()} Invited</Card.Subtitle>
                                                 
                                                 {/* <Card.Text>
                                         need to filter and map first three friends
@@ -266,8 +266,8 @@ function Dashboard() {
                                                 </>
                                                 </Card.Text> */}
 
-                                        {/* need to create link, will look like: something.com/{room.roomid} */}
-                                                <Card.Link href="room">Enter Room</Card.Link>
+                                        {/* replace below link with deployed URL */}
+                                                <Card.Link href={"http://localhost:3000/room/" + rooms.roomid}>Enter Room</Card.Link>
                                             </Card.Body>
                                         </Card>
                                     ))
