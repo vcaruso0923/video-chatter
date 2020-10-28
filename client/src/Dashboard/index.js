@@ -254,6 +254,7 @@ function Dashboard() {
                                         <Card key={rooms._id} style={{ width: '14em' }}>
                                             <Card.Body>
                                                 <Card.Title>{rooms.roomName}</Card.Title>
+                                                <Card.Subtitle className="mb-2 ">{user.email + `'s room`}</Card.Subtitle>
                                                 <Card.Subtitle className="mb-2 text-muted">{user.friends.length.toString()} Invited</Card.Subtitle>
                                                 
                                                 {/* <Card.Text>
