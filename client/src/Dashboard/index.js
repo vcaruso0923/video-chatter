@@ -74,10 +74,11 @@ function CreateRoom(props) {
 }
 
 function Invite(props) {
-    const [addFriend, {error}] = useMutation(ADD_FRIEND);
+    const [addFriend] = useMutation(ADD_FRIEND);
     const [singleSelections, setSingleSelections] = useState([]);
     const [friendEmail, setFriendEmail] = useState('');
     const [invalidEmail, setInvalidEmail] = useState('');
+    const [friendAdded, setFriendAdded] = useState('');
     const handleChange = event => {
         if (event.target.value.length <= 280) {
             setFriendEmail(event.target.value);
@@ -101,6 +102,7 @@ function Invite(props) {
         await addFriend({
             variables: { id: locatedFriend[0]._id }
         });
+        setFriendAdded('Friend Added!')
         } catch (error) {
             setInvalidEmail('Invalid Email!')
         }
@@ -136,6 +138,11 @@ function Invite(props) {
             {
                 <div>
                     <p style={{color: "red"}} className="error-text" >{invalidEmail}</p>
+                </div>
+            }
+            {
+                <div>
+                    <p style={{color: "green"}} className="error-text" >{friendAdded}</p>
                 </div>
             }
             <Button onClick={handleClick}>Add Friend</Button>
