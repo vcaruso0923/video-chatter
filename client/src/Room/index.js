@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 
 // just for testing
 const user = require('../img/user.png');
@@ -20,7 +20,7 @@ function Room() {
                         <Card.Header as="h6">email@email.com</Card.Header>
                         <Card.Body>
                             <Card.Text>
-                            <img className="video" src={String(user)} />
+                            <img alt="video" className="video" src={String(user)} />
                             </Card.Text>
                         </Card.Body>
                     </Card>

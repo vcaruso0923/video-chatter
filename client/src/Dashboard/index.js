@@ -153,7 +153,7 @@ function Dashboard() {
     const friendsArray = user.friends
     // console.log(friendsArray)
 
-    // console.log(user)
+    console.log(user)
     return (    
         <section className="dashboard animated fadeIn">
             
@@ -191,7 +191,7 @@ function Dashboard() {
                                 <hr />
                                 {/* map users own rooms */}
                                 {userRoomsArray && userRoomsArray.map(room => (
-                                    <Card style={{ width: '14em' }}>
+                                    <Card key={room.roomid} style={{ width: '14em' }}>
                                         <Card.Body>
                                             <Card.Title>{room.roomName}</Card.Title>
                                             <Card.Subtitle className="mb-2 text-muted">{user.friends.length.toString()} Invited</Card.Subtitle>
@@ -242,8 +242,9 @@ function Dashboard() {
                                             <Card.Body>
                                                 <Card.Title>{rooms.roomName}</Card.Title>
                                                 <Card.Subtitle className="mb-2 text-muted">1 Invited</Card.Subtitle>
-                                                <Card.Text>
-                                        {/* need to filter and map first three friends */}
+                                                
+                                                {/* <Card.Text>
+                                        need to filter and map first three friends
                                                 augusto@yahoo.ca<br />
                                                 bwcarty@att.net<br />
                                                 dprice@msn.com<br />
@@ -254,7 +255,7 @@ function Dashboard() {
                                                     placement={placement}
                                                     overlay={
                                                         <Tooltip id={`tooltip-${placement}`}>
-                                        {/* need to filter and map all friends but the first 3 */}
+                                        need to filter and map all friends but the first 3
                                                         lndale@yahoo.com, magusnet@icloud.com, tpedersen@gmail.com
                                                         </Tooltip>
                                                     }
@@ -263,7 +264,8 @@ function Dashboard() {
                                                     </OverlayTrigger>
                                                 ))}
                                                 </>
-                                                </Card.Text>
+                                                </Card.Text> */}
+
                                         {/* need to create link, will look like: something.com/{room.roomid} */}
                                                 <Card.Link href="room">Enter Room</Card.Link>
                                             </Card.Body>
@@ -297,7 +299,7 @@ function Dashboard() {
                                 </thead>
                                 <tbody>
                                 {friendsArray && friendsArray.map(friend => (
-                                    <tr>
+                                    <tr key={friend._id}>
                                     <td>{friend.email}</td>
                                     </tr>
                                 ))}
