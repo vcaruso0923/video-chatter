@@ -32,7 +32,7 @@ function Homepage() {
                         </Col>
                         <Col>
                             <h2>Device Agnostic</h2>
-                            <p>Lorem to ipsum the dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud .</p>
+                            <p>Vroom is compatible on all devices, desktop, mobile and tablet. Vroom’s backend utilizes modern web-based technologies such as <a href="https://webrtc.org/">webRTC</a> and <a href="https://socket.io">socket.io</a> for realtime communication over the internet. Vroom’s responsive front end will look great on any device, without the user needing to download a native application.</p>
                         </Col>
                     </Row>
                 </Container>
@@ -41,8 +41,8 @@ function Homepage() {
                 <Container>
                     <Row>
                         <Col>
-                            <h2>Device Agnostic</h2>
-                            <p>Lorem to ipsum the dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud .</p>
+                            <h2>Host Large Or Small Meetings</h2>
+                            <p>The Vroom dashboard allows you to control your Vroom experience. Vroom allows you to add your colleagues and friends to the platform. Create rooms and invite your contacts as attendees.  You will also be notified in your Vroom dashboard  when your friends create a room, so you can always stay in touch.</p>
                         </Col>
                         <Col>
                             <img alt='computers' className="img-fluid" src={String(computers)} />

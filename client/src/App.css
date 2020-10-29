@@ -170,4 +170,12 @@ button.cancel{
 .tab-content img{
   max-width: 20px;
 }
+.greenBg p,
+.greenBg2 p {
+  line-height: 35px;
+}
 
+.greenBg2 a{
+  color: #fff !important;
+  text-decoration: underline;
+}
