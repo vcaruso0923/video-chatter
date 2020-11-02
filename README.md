@@ -1,5 +1,5 @@
 **Please note: as of right now, the video room portion of this application is not deployed. You can still find and add friends and see their rooms, but in order to actually join a room, you must do so locally. To accomplish this, follow these steps:**
-1. Navigate to: https://github.com/vcaruso0923
+1. Navigate to: https://github.com/vcaruso0923/video-chatter-2-2
 2. Clone that repository to your machine (and install all dependencies with yarn)
 3. From the root directory, run 'npm start'
 4. Navigate to: https://pure-shelf-42623.herokuapp.com/ in your browser.
