@@ -234,7 +234,7 @@ function Dashboard() {
                                             </Card.Text> */}
 
                                         {/* replace below link with deployed URL */}
-                                            <Card.Link href={"http://localhost:3000/room/" + room.roomid}>Enter Room</Card.Link>
+                                            <Card.Link href={"https://salty-lowlands-76602.herokuapp.com/room/" + room.roomid}>Enter Room</Card.Link>
                                         </Card.Body>
                                     </Card>
                                 ))}
@@ -281,7 +281,7 @@ function Dashboard() {
                                                 </Card.Text> */}
 
                                         {/* replace below link with deployed URL */}
-                                                <Card.Link href={"http://localhost:3000/room/" + rooms.roomid}>Enter Room</Card.Link>
+                                                <Card.Link href={"https://salty-lowlands-76602.herokuapp.com/room/" + rooms.roomid}>Enter Room</Card.Link>
                                             </Card.Body>
                                         </Card>
                                     ))
