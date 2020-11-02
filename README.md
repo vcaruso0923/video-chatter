@@ -29,7 +29,9 @@ We are on a Zero Real Estate mission to ensure everyone can stay connected globa
  To run this application download or clone this repository. Install all dependencies. From your terminal in the root directory, run *npm start*.
  The server will then lanch Vroom.
 
-Please note, this application depends on another for hosting the rooms - this application is solely for handling creating accounts / adding friends / creating and joining rooms. If you would like to download the code for hosting rooms, please visit: https://github.com/vcaruso0923/video-chatter-2-2
+Please note, this application depends on another for hosting the rooms - this application is solely for handling creating accounts / adding friends / creating and joining rooms. If you would like to download the code for hosting rooms, please clone this repository along with the one at this link: https://github.com/vcaruso0923/video-chatter-2-2
+
+You will have to run multiple servers to access all functionality locally. After cloning both repositories, first make the following change in the code of this repository (video-chatter): in client\src\Dashboard\index.js change the href on lines 237 and 284 to "localhost8000/room/". Save. Then, in the root directory of this application (video-chatter), run 'npm start'. The application will run two servers concurrently on ports 3000 and 3001. Then, in the root directory of video-chatter-2-2, run 'node server.js' and that server will run on port 8000. 
 
 ---
 
