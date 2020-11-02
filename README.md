@@ -1,14 +1,3 @@
-**Please note: as of right now, the video room portion of this application is not deployed. You can still find and add friends and see their rooms, but in order to actually join a room, you must do so locally. To accomplish this, follow these steps:**
-1. Navigate to: https://github.com/vcaruso0923/video-chatter-2-2
-2. Clone that repository to your machine (and install all dependencies with yarn)
-3. From the root directory, run 'npm start'
-4. Navigate to: https://pure-shelf-42623.herokuapp.com/ in your browser.
-5. Join a room.
-
-Since the video rooms are hosted locally on your machine, you will not be able to join rooms with people on other machines. To simulate this functionality, copy the address bar of a room you have joined, open a new tab, paste the address into the address bar. You will enter the room again (see yourself twice). 
-
-I will update once this is fixed. 
-
 # VROOM: The Social Distancing Solution!
 ![The Social Distancing Solution!](https://github.com/vcaruso0923/video-chatter-2-2/blob/master/vroom-main-photo.png)
 
